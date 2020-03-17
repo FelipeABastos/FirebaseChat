@@ -69,7 +69,7 @@ class RegisterViewController: UIViewController, ImagePickerDelegate {
     
     @IBAction func makeRegister() {
         
-        guard let email = txtEmail?.text, let password = txtPassword?.text else {return}
+        guard let email = txtEmail?.text, let password = txtPassword?.text, let name = txtName?.text else {return}
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error ) in
             
@@ -79,6 +79,25 @@ class RegisterViewController: UIViewController, ImagePickerDelegate {
             }
             
             // successfully authenticated
+            
+            let ref = Database.database().reference(fromURL: "https://fir-chat-5c19c.firebaseio.com/")
+            
+            guard let userID = Auth.auth().currentUser?.uid else { return }
+            
+            let usersReference = ref.child("users").child(userID)
+            
+            let values = ["name": name,
+                          "email": email]
+            
+            usersReference.updateChildValues(values) { (err, ref) in
+                
+                if err != nil {
+                    print(err ?? "")
+                    return
+                }
+                
+                print("Saved User Successfully into Firebase database")
+            }
         }
     }
     
