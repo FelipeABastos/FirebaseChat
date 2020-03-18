@@ -91,12 +91,14 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
+  - RKDropdownAlert (0.3.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
+  - RKDropdownAlert
 
 SPEC REPOS:
   trunk:
@@ -118,6 +120,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - RKDropdownAlert
 
 SPEC CHECKSUMS:
   Firebase: d55ddb0e0bb3207166cddc028647833d8a1b5b6f
@@ -138,7 +141,8 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
 
-PODFILE CHECKSUM: b302400b34d56c3057bb7324fc0d0386bf36f104
+PODFILE CHECKSUM: 90395ee82ff4c243717719ce70152757221d5355
 
 COCOAPODS: 1.8.4

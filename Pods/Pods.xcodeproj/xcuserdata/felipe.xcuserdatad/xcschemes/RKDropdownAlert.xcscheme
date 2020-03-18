@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4402AFF83DBDC4DD07E198685FDC2DF2"
-               BuildableName = "libFirebaseCore.a"
-               BlueprintName = "FirebaseCore"
+               BlueprintIdentifier = "B17CD1A03A2188ABB00010F9DB42B8D1"
+               BuildableName = "libRKDropdownAlert.a"
+               BlueprintName = "RKDropdownAlert"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

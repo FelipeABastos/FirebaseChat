@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RKDropdownAlert
 
 class RegisterViewController: UIViewController, ImagePickerDelegate {
     
@@ -71,33 +72,40 @@ class RegisterViewController: UIViewController, ImagePickerDelegate {
         
         guard let email = txtEmail?.text, let password = txtPassword?.text, let name = txtName?.text else {return}
         
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error ) in
-            
-            if error != nil {
-                print(error ?? "")
-                return
-            }
-            
-            // successfully authenticated
-            
-            let ref = Database.database().reference(fromURL: "https://fir-chat-5c19c.firebaseio.com/")
-            
-            guard let userID = Auth.auth().currentUser?.uid else { return }
-            
-            let usersReference = ref.child("users").child(userID)
-            
-            let values = ["name": name,
-                          "email": email]
-            
-            usersReference.updateChildValues(values) { (err, ref) in
+        if name != "" {
+            Auth.auth().createUser(withEmail: email, password: password) { (user, error ) in
                 
-                if err != nil {
-                    print(err ?? "")
+                if error != nil {
+                    print(error ?? "")
+                    Util.showMessage(text: "\(error?.localizedDescription ?? "")", type: .warning)
                     return
                 }
                 
-                print("Saved User Successfully into Firebase database")
+                // successfully authenticated
+                
+                let ref = Database.database().reference(fromURL: "https://fir-chat-5c19c.firebaseio.com/")
+                
+                guard let userID = Auth.auth().currentUser?.uid else { return }
+                
+                let usersReference = ref.child("users").child(userID)
+                
+                let values = ["name": name,
+                              "email": email]
+                
+                usersReference.updateChildValues(values) { (err, ref) in
+                    
+                    if err != nil {
+                        print(err ?? "")
+                        return
+                    }
+                    
+                    self.dismiss(animated: true, completion: nil)
+                    Util.showMessage(text: "Registered Successfully", type: .success)
+                    
+                }
             }
+        }else{
+            Util.showMessage(text: "You need to put a name", type: .warning)
         }
     }
     
