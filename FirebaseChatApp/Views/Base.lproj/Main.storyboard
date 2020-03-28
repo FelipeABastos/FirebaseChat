@@ -57,7 +57,7 @@
                                                         <rect key="frame" x="15" y="8" width="324" height="44"/>
                                                         <color key="textColor" red="0.99991279840000002" green="1" blue="0.99988144639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -93,6 +93,9 @@
                                                         <integer key="value" value="25"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="makeLogin" destination="7Gh-aW-O2E" eventType="touchUpInside" id="SfR-GS-kiD"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gtu-VR-QZT">
                                                 <rect key="frame" x="60" y="490" width="294" height="60"/>
@@ -255,7 +258,7 @@
                                         <rect key="frame" x="15" y="8" width="324" height="44"/>
                                         <color key="textColor" red="0.99991279840000002" green="1" blue="0.99988144639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -346,10 +349,10 @@
             </objects>
             <point key="canvasLocation" x="879.71014492753625" y="-319.41964285714283"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="sHc-kG-CWO">
             <objects>
-                <viewController id="Umy-NX-w4C" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeView" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Umy-NX-w4C" customClass="HomeViewController" customModule="FirebaseChatApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U22-7b-AaJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -361,18 +364,21 @@
                                     <constraint firstAttribute="height" constant="2" id="h6W-Sm-riN"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Felipe Bastos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PlQ-JS-HcM">
-                                <rect key="frame" x="153.5" y="54" width="115.5" height="21.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PlQ-JS-HcM">
+                                <rect key="frame" x="211.5" y="54" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhJ-Sr-JRp">
-                                <rect key="frame" x="20" y="48" width="71" height="33"/>
+                                <rect key="frame" x="20" y="48" width="58" height="33"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="Sign Out">
+                                <state key="normal" title="Logout">
                                     <color key="titleColor" red="0.77066630125045776" green="0.12083406001329422" blue="0.36482518911361694" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="logoutButton" destination="Umy-NX-w4C" eventType="touchUpInside" id="6E4-Zx-W5T"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWH-UT-7UK">
                                 <rect key="frame" x="364" y="48" width="30" height="30"/>
@@ -380,7 +386,11 @@
                                     <constraint firstAttribute="height" constant="30" id="6DO-Cm-Pya"/>
                                     <constraint firstAttribute="width" constant="30" id="aVl-ca-hT1"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" image="NewMessage"/>
+                                <connections>
+                                    <action selector="newMessage" destination="Umy-NX-w4C" eventType="touchUpInside" id="tuJ-P2-MSC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.079828403890132904" green="0.11632103472948074" blue="0.15004527568817139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -397,10 +407,54 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FPp-K5-eaO"/>
                     </view>
+                    <connections>
+                        <outlet property="lblUserName" destination="PlQ-JS-HcM" id="1Bk-Yy-Xcq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zes-p4-Ymp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1592.753623188406" y="-319.41964285714283"/>
+        </scene>
+        <!--New Message View Controller-->
+        <scene sceneID="ygw-Ee-qFw">
+            <objects>
+                <viewController storyboardIdentifier="MessageView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wFh-RQ-7bc" customClass="NewMessageViewController" customModule="FirebaseChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S3Q-Pg-ezo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuM-ab-ntx">
+                                <rect key="frame" x="0.0" y="94" width="414" height="2"/>
+                                <color key="backgroundColor" red="0.77066630130000002" green="0.12083405999999999" blue="0.3648251891" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="LdT-lj-vOj"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdX-qw-jGa">
+                                <rect key="frame" x="20" y="48" width="57" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.77066630130000002" green="0.12083405999999999" blue="0.3648251891" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backHome" destination="wFh-RQ-7bc" eventType="touchUpInside" id="uiA-oY-s2c"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.08674708753824234" green="0.12576502561569214" blue="0.16985020041465759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZdX-qw-jGa" firstAttribute="top" secondItem="x9U-Yb-emG" secondAttribute="top" constant="4" id="0G7-Nw-NuF"/>
+                            <constraint firstItem="NuM-ab-ntx" firstAttribute="leading" secondItem="S3Q-Pg-ezo" secondAttribute="leading" id="IFB-V7-oCQ"/>
+                            <constraint firstItem="NuM-ab-ntx" firstAttribute="top" secondItem="x9U-Yb-emG" secondAttribute="top" constant="50" id="Pgn-4V-nEC"/>
+                            <constraint firstItem="ZdX-qw-jGa" firstAttribute="leading" secondItem="x9U-Yb-emG" secondAttribute="leading" constant="20" id="fY7-xB-KQf"/>
+                            <constraint firstAttribute="trailing" secondItem="NuM-ab-ntx" secondAttribute="trailing" id="lka-R7-o1n"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="x9U-Yb-emG"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C6t-8y-Ltt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2324.6376811594205" y="-319.41964285714283"/>
         </scene>
     </scenes>
     <resources>

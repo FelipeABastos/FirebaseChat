@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import RKDropdownAlert
 
 class LoginViewController: UIViewController {
     
@@ -23,7 +25,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configUI()
     }
     
@@ -56,15 +57,30 @@ class LoginViewController: UIViewController {
         
         self.hideKeyboardWhenTappedAround()
         
-        Util.tintPlaceholder(field: txtEmail!, color: .white)
-        Util.tintPlaceholder(field: txtPassword!, color: .white)
+        guard let email = txtEmail, let password = txtPassword else {return}
+        
+        Util.tintPlaceholder(field: email, color: .white)
+        Util.tintPlaceholder(field: password, color: .white)
         
         txtEmail?.keyboardAppearance = .dark
         txtPassword?.keyboardAppearance = .dark
+        
     }
     
     @IBAction func makeLogin() {
         
+        guard let email = txtEmail?.text, let password = txtPassword?.text else {return}
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            if error != nil {
+                Util.showMessage(text: "\(error?.localizedDescription ?? "")", type: .warning)
+                return
+            }
+            
+            let homeVC = self.storyboard?.instantiateViewController(identifier: "HomeView") as! HomeViewController
+            self.present(homeVC, animated: true, completion: nil)
+        }
     }
     
     @IBAction func openRegister() {

@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55179C75242D29EF00092EBA /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55179C74242D29EF00092EBA /* NewMessageViewController.swift */; };
 		556E13A2242297D4005786C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E13A1242297D4005786C5 /* AppDelegate.swift */; };
 		556E13A4242297D4005786C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E13A3242297D4005786C5 /* SceneDelegate.swift */; };
 		556E13A6242297D4005786C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E13A5242297D4005786C5 /* LoginViewController.swift */; };
@@ -19,10 +20,12 @@
 		556E13BF24229818005786C5 /* ImagePickerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E13BE24229818005786C5 /* ImagePickerClass.swift */; };
 		556E13C12422982F005786C5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E13C02422982F005786C5 /* RegisterViewController.swift */; };
 		55AE657E24229D4000F14C69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55AE657D24229D4000F14C69 /* GoogleService-Info.plist */; };
+		55FF2D02242A441C00CED520 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FF2D01242A441C00CED520 /* HomeViewController.swift */; };
 		C14F83783B0144B0CD2258D7 /* libPods-FirebaseChatApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FA2D12D403CC77586CE92C /* libPods-FirebaseChatApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55179C74242D29EF00092EBA /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		556E139E242297D4005786C5 /* FirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		556E13A1242297D4005786C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		556E13A3242297D4005786C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +40,7 @@
 		556E13BE24229818005786C5 /* ImagePickerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerClass.swift; sourceTree = "<group>"; };
 		556E13C02422982F005786C5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		55AE657D24229D4000F14C69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55FF2D01242A441C00CED520 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8F0EE4827FBC344F88CF150F /* Pods-FirebaseChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChatApp.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseChatApp/Pods-FirebaseChatApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E8FA2D12D403CC77586CE92C /* libPods-FirebaseChatApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirebaseChatApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD545AA6C7A669A4C38B031 /* Pods-FirebaseChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChatApp.release.xcconfig"; path = "Target Support Files/Pods-FirebaseChatApp/Pods-FirebaseChatApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 			children = (
 				556E13A5242297D4005786C5 /* LoginViewController.swift */,
 				556E13C02422982F005786C5 /* RegisterViewController.swift */,
+				55FF2D01242A441C00CED520 /* HomeViewController.swift */,
+				55179C74242D29EF00092EBA /* NewMessageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -236,6 +242,8 @@
 				556E13BD24229810005786C5 /* Util.swift in Sources */,
 				556E13C12422982F005786C5 /* RegisterViewController.swift in Sources */,
 				556E13A2242297D4005786C5 /* AppDelegate.swift in Sources */,
+				55179C75242D29EF00092EBA /* NewMessageViewController.swift in Sources */,
+				55FF2D02242A441C00CED520 /* HomeViewController.swift in Sources */,
 				556E13A4242297D4005786C5 /* SceneDelegate.swift in Sources */,
 				556E13BB24229808005786C5 /* BorderClass.swift in Sources */,
 				556E13B9242297FF005786C5 /* GradientColors.swift in Sources */,
