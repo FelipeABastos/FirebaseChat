@@ -81,31 +81,65 @@ class RegisterViewController: UIViewController, ImagePickerDelegate {
                     return
                 }
                 
+                guard let uid = user?.user.uid else {return}
+                
                 // successfully authenticated
                 
-                let ref = Database.database().reference(fromURL: "https://fir-chat-5c19c.firebaseio.com/")
+                let imageName = NSUUID().uuidString
                 
-                guard let userID = Auth.auth().currentUser?.uid else { return }
+                self.showSpinner(onView: self.view)
                 
-                let usersReference = ref.child("users").child(userID)
+                let storageRef = Storage.storage().reference().child("Profile_images").child("\(imageName).png")
                 
-                let values = ["name": name,
-                              "email": email]
+                guard let imageProfile = self.imgAvatar.image else {return}
                 
-                usersReference.updateChildValues(values) { (err, ref) in
+                let imageData = imageProfile.jpegData(compressionQuality: 1)
+                
+                storageRef.putData(imageData!, metadata: nil) { (metadata, error) in
                     
-                    if err != nil {
-                        print(err ?? "")
+                    if error != nil {
+                        print(error)
                         return
                     }
                     
-                    self.dismiss(animated: true, completion: nil)
-                    Util.showMessage(text: "Registered Successfully", type: .success)
-                    
+                    storageRef.downloadURL { (url, error) in
+                        
+                        if let error = error {
+                            print(error)
+                        }else{
+                            if let profileImageUrl = url?.absoluteString {
+                                let values = ["name": name,
+                                              "email": email,
+                                              "profileImageUrl": profileImageUrl]
+                                
+                                self.registerUserIntoDatabaseWithUID(uid: uid, values: values)
+                                self.removeSpinner()
+                            }
+                        }
+                    }
                 }
             }
         }else{
             Util.showMessage(text: "You need to put a name", type: .warning)
+        }
+    }
+    
+    func registerUserIntoDatabaseWithUID(uid: String, values: [String: String]) {
+        let ref = Database.database().reference(fromURL: "https://fir-chat-5c19c.firebaseio.com/")
+        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        
+        let usersReference = ref.child("users").child(userID)
+        
+        usersReference.updateChildValues(values) { (err, ref) in
+            
+            if err != nil {
+                print(err ?? "")
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+            Util.showMessage(text: "Registered Successfully", type: .success)
         }
     }
     
@@ -119,6 +153,33 @@ class RegisterViewController: UIViewController, ImagePickerDelegate {
     
     @IBAction func showImagePicker(_ sender: UIButton) {
         self.imagePicker.present(from: sender)
+    }
+}
+
+var vSpinner: UIView?
+
+extension UIViewController {
+    func showSpinner(onView : UIView) {
+        
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor(red:0.01, green:0.00, blue:0.01, alpha:0.70)
+        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            vSpinner?.removeFromSuperview()
+            vSpinner = nil
+        }
     }
 }
 

@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        checkIfUserIsLoggedIn()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,21 +57,26 @@ class HomeViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             Util.showMessage(text: "Successfully logged out", type: .success)
+            
+            let loginVC = storyboard?.instantiateViewController(identifier: "LoginView") as! LoginViewController
+            loginVC.modalPresentationStyle = .fullScreen
+            
+            present(loginVC, animated: true, completion: nil)
         }catch let logoutError {
             print(logoutError)
         }
-        
-        self.dismiss(animated: true, completion: nil)
     }
     
     func configUI() {
-        checkIfUserIsLoggedIn()
+        
     }
     
     func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser?.uid == nil {
             performSelector(inBackground: #selector(handleLogout), with: nil)
-            handleLogout()
+            
+            let loginVC = storyboard?.instantiateViewController(identifier: "LoginView") as! LoginViewController
+            self.present(loginVC, animated: true, completion: nil)
         }else{
             let uid = Auth.auth().currentUser?.uid
             Database.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -92,8 +97,5 @@ class HomeViewController: UIViewController {
         }catch let logoutError {
             print(logoutError)
         }
-        
-        let loginVC = LoginViewController()
-        present(loginVC, animated: true, completion: nil)
     }
 }

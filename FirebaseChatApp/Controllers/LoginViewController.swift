@@ -55,6 +55,10 @@ class LoginViewController: UIViewController {
     
     func configUI() {
         
+        if UserDefaults.standard.bool(forKey: "is_authenticated") {
+            self.showHome()
+        }
+        
         self.hideKeyboardWhenTappedAround()
         
         guard let email = txtEmail, let password = txtPassword else {return}
@@ -78,9 +82,19 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            let homeVC = self.storyboard?.instantiateViewController(identifier: "HomeView") as! HomeViewController
-            self.present(homeVC, animated: true, completion: nil)
+            self.stayLogged()
+            self.showHome()
         }
+    }
+    
+    func stayLogged() {
+        UserDefaults.standard.set(true, forKey: "is_authenticated")
+        UserDefaults.standard.synchronize()
+    }
+    
+    func showHome() {
+        let homeVC = self.storyboard?.instantiateViewController(identifier: "HomeView") as! HomeViewController
+        self.present(homeVC, animated: true, completion: nil)
     }
     
     @IBAction func openRegister() {

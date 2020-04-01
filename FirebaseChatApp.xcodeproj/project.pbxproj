@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		55179C75242D29EF00092EBA /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55179C74242D29EF00092EBA /* NewMessageViewController.swift */; };
+		552D41F824340E9E0044F996 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D41F724340E9E0044F996 /* User.swift */; };
+		552D41FE243418700044F996 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552D41FD243418700044F996 /* UserCell.swift */; };
 		556E13A2242297D4005786C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E13A1242297D4005786C5 /* AppDelegate.swift */; };
 		556E13A4242297D4005786C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E13A3242297D4005786C5 /* SceneDelegate.swift */; };
 		556E13A6242297D4005786C5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556E13A5242297D4005786C5 /* LoginViewController.swift */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		55179C74242D29EF00092EBA /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
+		552D41F724340E9E0044F996 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		552D41FD243418700044F996 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		556E139E242297D4005786C5 /* FirebaseChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		556E13A1242297D4005786C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		556E13A3242297D4005786C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +62,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		552D41F624340E900044F996 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				552D41F724340E9E0044F996 /* User.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		552D41FC2434185C0044F996 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				552D41FD243418700044F996 /* UserCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		556E1395242297D4005786C5 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +99,8 @@
 		556E13A0242297D4005786C5 /* FirebaseChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				552D41FC2434185C0044F996 /* Cell */,
+				552D41F624340E900044F996 /* Entities */,
 				556E13B5242297DA005786C5 /* Classes */,
 				556E13B7242297E6005786C5 /* Views */,
 				556E13B6242297DE005786C5 /* Controllers */,
@@ -245,8 +267,10 @@
 				55179C75242D29EF00092EBA /* NewMessageViewController.swift in Sources */,
 				55FF2D02242A441C00CED520 /* HomeViewController.swift in Sources */,
 				556E13A4242297D4005786C5 /* SceneDelegate.swift in Sources */,
+				552D41FE243418700044F996 /* UserCell.swift in Sources */,
 				556E13BB24229808005786C5 /* BorderClass.swift in Sources */,
 				556E13B9242297FF005786C5 /* GradientColors.swift in Sources */,
+				552D41F824340E9E0044F996 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
