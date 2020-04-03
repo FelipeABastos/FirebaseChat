@@ -8,11 +8,15 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var lblUserName: UILabel?
-    @IBOutlet var btnAllMessages: UIButton?
+    @IBOutlet var imgUserPhoto: UIImageView?
+    @IBOutlet var tbMessages: UITableView?
+    
+    var messages = [Message]()
     
     //-----------------------------------------------------------------------
     //    MARK: UIViewController
@@ -45,12 +49,45 @@ class HomeViewController: UIViewController {
     }
     
     //-----------------------------------------------------------------------
+    //    MARK: UITableView Delegate / Datasource
+    //-----------------------------------------------------------------------
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let messagesList = messages[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
+        cell.loadUI(item: messagesList)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    //-----------------------------------------------------------------------
     //    MARK: Custom methods
     //-----------------------------------------------------------------------
     
     @IBAction func newMessage() {
         let messageVC = storyboard?.instantiateViewController(identifier: "MessageView") as! NewMessageViewController
+        messageVC.homeVC = self
         present(messageVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func openChatForUser(user: User) {
+        let chatVC = storyboard?.instantiateViewController(identifier: "ChatView") as! ChatViewController
+        chatVC.user = user
+        present(chatVC, animated: true, completion: nil)
     }
     
     @IBAction func logoutButton() {
@@ -69,7 +106,48 @@ class HomeViewController: UIViewController {
     
     func configUI() {
         
+        observeMessages()
     }
+    
+    func observeMessages() {
+        Database.database().reference().child("messages").observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message()
+                
+                message.text = dictionary["text"] as? String
+                message.fromId = dictionary["fromId"] as? String
+                message.timestamp = dictionary["timestamp"] as? NSNumber
+                message.toID = dictionary["toId"] as? String
+                
+                self.messages.append(message)
+                
+                DispatchQueue.main.async {
+                    self.tbMessages?.reloadData()
+                }
+            }
+        }, withCancel: nil)
+    }
+    
+//    func observeMessages() {
+//        let ref = Database.database().reference().child("messages")
+//        ref.observeSingleEvent(of: .childAdded, with: { (snapshot) in
+//
+//            if let dictionary = snapshot.value as? [String: AnyObject] {
+//                let message = Message()
+//
+//                message.text = dictionary["text"] as? String
+//                message.fromId = dictionary["fromId"] as? String
+//                message.timestamp = dictionary["timestamp"] as? NSNumber
+//                message.toID = dictionary["toId"] as? String
+//
+//                self.messages.append(message)
+//
+//                DispatchQueue.main.async {
+//                    self.tbMessages?.reloadData()
+//                }
+//            }
+//        }, withCancel: nil)
+//    }
     
     func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser?.uid == nil {
@@ -83,6 +161,7 @@ class HomeViewController: UIViewController {
                     
                 if let dic = snapshot.value as? [String: Any] {
                     self.lblUserName?.text = dic["name"] as? String
+                    self.imgUserPhoto?.kf.setImage(with: URL(string: dic["profileImageUrl"] as? String ?? ""))
                 }
                 
                 

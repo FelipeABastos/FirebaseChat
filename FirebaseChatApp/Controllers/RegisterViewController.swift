@@ -96,7 +96,7 @@ class RegisterViewController: UIViewController, ImagePickerDelegate {
                 
                 let storageRef = Storage.storage().reference().child("Profile_images").child("\(imageName).png")
                 
-                let imageData = imageProfile.jpegData(compressionQuality: 1)
+                let imageData = imageProfile.jpegData(compressionQuality: 0.5)
                 
                 storageRef.putData(imageData!, metadata: nil) { (metadata, error) in
                     

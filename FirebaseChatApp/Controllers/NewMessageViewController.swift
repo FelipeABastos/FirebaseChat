@@ -13,6 +13,8 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let cellId = "CellID"
     
+    var homeVC: HomeViewController?
+    
     var users = [User]()
     
     @IBOutlet var tbMessages: UITableView?
@@ -72,6 +74,11 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        self.dismiss(animated: true, completion: nil)
+        
+        let user = self.users[indexPath.row]
+        
+        self.homeVC?.openChatForUser(user: user)
     }
     
     
@@ -89,6 +96,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
             if let dictionary = snapshot.value as? [String:AnyObject] {
                 let user = User()
                 
+                user.id = snapshot.key
                 user.name = dictionary["name"] as? String
                 user.email = dictionary["email"] as? String
                 user.profileImageUrl = dictionary["profileImageUrl"] as? String
