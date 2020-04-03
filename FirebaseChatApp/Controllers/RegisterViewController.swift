@@ -72,6 +72,11 @@ class RegisterViewController: UIViewController, ImagePickerDelegate {
         
         guard let email = txtEmail?.text, let password = txtPassword?.text, let name = txtName?.text else {return}
         
+        guard let imageProfile = self.imgAvatar.image else {
+            Util.showMessage(text: "You need to select a photo", type: .warning)
+            return
+        }
+        
         if name != "" {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error ) in
                 
@@ -90,8 +95,6 @@ class RegisterViewController: UIViewController, ImagePickerDelegate {
                 self.showSpinner(onView: self.view)
                 
                 let storageRef = Storage.storage().reference().child("Profile_images").child("\(imageName).png")
-                
-                guard let imageProfile = self.imgAvatar.image else {return}
                 
                 let imageData = imageProfile.jpegData(compressionQuality: 1)
                 
@@ -163,7 +166,7 @@ extension UIViewController {
         
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor(red:0.01, green:0.00, blue:0.01, alpha:0.70)
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        let ai = UIActivityIndicatorView.init(style: .large)
         ai.startAnimating()
         ai.center = spinnerView.center
         

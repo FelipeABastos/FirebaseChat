@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserCell: UITableViewCell {
     
@@ -18,5 +19,9 @@ class UserCell: UITableViewCell {
         
         lblName?.text = item.name
         lblEmail?.text = item.email
+        
+        if let profileImageUrl = item.profileImageUrl {
+            imgPhoto?.kf.setImage(with: URL(string: profileImageUrl))
+        }
     }
 }

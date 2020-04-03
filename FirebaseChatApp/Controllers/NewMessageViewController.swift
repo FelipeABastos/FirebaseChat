@@ -56,7 +56,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 69
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,7 +64,9 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         let user = users[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") as! UserCell
+        cell.imgPhoto?.image = UIImage(named: "profile")
         cell.loadUI(item: user)
+        
         return cell
     }
     
@@ -89,6 +91,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 user.name = dictionary["name"] as? String
                 user.email = dictionary["email"] as? String
+                user.profileImageUrl = dictionary["profileImageUrl"] as? String
                 self.users.append(user)
                 
                 DispatchQueue.main.async {
